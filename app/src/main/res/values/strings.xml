@@ -1,8 +1,7 @@
 <resources>
     <string name="app_name">DNA Relationship Reference</string>
-    <string name="finRelBtnLbl">Find Relationships</string>
-    <string name="cmValLbl">centimorgans</string>
-    <string name="switchOffVal">%</string>
-    <string name="switchOnVal">CM</string>
-    <string name="switchLbl">CM/%</string>
+    <string name="finRelBtnLbl">Get Relationships</string>
+    <string name="cmValLbl">value</string>
+    <string name="percentRBVal">% shared</string>
+    <string name="cmRBVal">centimorgans</string>
 </resources>

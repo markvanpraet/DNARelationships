@@ -11,27 +11,52 @@
 
     <EditText
         android:id="@+id/cmValueTxt"
-        android:layout_width="wrap_content"
+        android:layout_width="75dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
         android:autofillHints=""
         android:hint="@string/cmValLbl"
         android:inputType="numberDecimal"
-        app:layout_constraintEnd_toStartOf="@+id/findRelationshipsBtn"
+        app:layout_constraintEnd_toStartOf="@+id/uomRadioGrp"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="centimorgans" />
 
+    <RadioGroup
+        android:id="@+id/uomRadioGrp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        app:layout_constraintStart_toEndOf="@+id/cmValueTxt"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RadioButton
+            android:id="@+id/cmRadBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:checked="true"
+            android:text="@string/cmRBVal"
+            android:textSize="12sp" />
+
+        <RadioButton
+            android:id="@+id/percentRadBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:text="@string/percentRBVal"
+            android:textSize="12sp" />
+    </RadioGroup>
+
     <Button
         android:id="@+id/findRelationshipsBtn"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:enabled="false"
         android:text="@string/finRelBtnLbl"
         app:layout_constraintBottom_toBottomOf="@+id/cmValueTxt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/cmValueTxt"
+        app:layout_constraintStart_toEndOf="@+id/uomRadioGrp"
         app:layout_constraintTop_toTopOf="@+id/cmValueTxt"
         app:layout_constraintVertical_bias="1.0" />
 
@@ -39,12 +64,13 @@
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="8dp"
         android:isScrollContainer="true"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/findRelationshipsBtn"
+        app:layout_constraintTop_toBottomOf="@id/uomRadioGrp"
         app:layout_constraintVertical_bias="0.0">
 
         <ExpandableListView

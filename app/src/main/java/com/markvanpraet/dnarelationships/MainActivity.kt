@@ -2,6 +2,8 @@ package com.markvanpraet.dnarelationships
 
 import android.content.Context
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.inputmethod.InputMethodManager
 import android.widget.ExpandableListAdapter
 import android.widget.ExpandableListView
@@ -22,7 +24,10 @@ class MainActivity : AppCompatActivity() {
 
     private val cmMinValue: Double = 1.0
     private val cmMaxValue: Double = 3720.0
+    private val cmPercentConv: Double = 7460.0
+
     private val decFormat = NumberFormat.getNumberInstance()
+
     private val groupColumn: HashMap<String, Int> = hashMapOf(
         "AA" to 0,
         "A" to 1,
@@ -55,42 +60,81 @@ class MainActivity : AppCompatActivity() {
         likelihoods = loadLikelihoods()
         groupings = loadGroupings()
 
+        decFormat.maximumFractionDigits = 2
+
+        // disable button unless values entered
+        cmValueTxt.addTextChangedListener(object: TextWatcher {
+            override fun onTextChanged(s:CharSequence, start:Int, before:Int, count:Int) {
+                findRelationshipsBtn.isEnabled = s.toString().trim { it <= ' ' }.isNotEmpty()
+            }
+            override fun beforeTextChanged(s:CharSequence, start:Int, count:Int,
+                                           after:Int) {
+            }
+            override fun afterTextChanged(s: Editable) {
+            }
+        })
+        //
+        // main logic for processing entered values
         findRelationshipsBtn.setOnClickListener {
 
             // hide soft keypad
             val immHandle = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             immHandle.hideSoftInputFromWindow(currentFocus!!.windowToken, 0)
 
-            var cm = decFormat.parse(cmValueTxt.text.toString()).toDouble()
+            var centimorgans: Double
 
-            // constrain to allowed values
-            if (cm > cmMaxValue) {
-                cm = cmMaxValue
-                cmValueTxt.setText(cm.toString())
+            // assess whether cm or % selected as UOM
+            if(cmRadBtn.isChecked) {
+                centimorgans = decFormat.parse(cmValueTxt.text.toString()).toDouble()
+                // constrain to allowed values
+                if (centimorgans > cmMaxValue) {
+                    centimorgans = cmMaxValue
+                    cmValueTxt.setText(centimorgans.toString())
+                    Toast.makeText(
+                        applicationContext,
+                        "Maximum centimorgan value of $cmMaxValue has been substituted",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+                if (centimorgans < cmMinValue) {
+                    centimorgans = cmMinValue
+                    cmValueTxt.setText(centimorgans.toString())
+                    Toast.makeText(
+                        applicationContext,
+                        "Minimum centimorgan value of $cmMinValue has been substituted",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            }
+            // percentage entered
+            else {
+                var percent = decFormat.parse(cmValueTxt.text.toString()).toDouble()
+                if (percent > 100) {
+                    percent = 100.0
+                    cmValueTxt.setText(percent.toString())
+                    Toast.makeText(
+                        applicationContext,
+                        "Maximum percentage value of 100 has been substituted",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+                centimorgans = cmPercentConv / 100 * percent     // convert percent to centimorgans
                 Toast.makeText(
                     applicationContext,
-                    "Maximum centimorgan value of $cmMaxValue has been substituted",
+                    "Percentage value equates to ${decFormat.format(centimorgans)} centimorgans",
                     Toast.LENGTH_LONG
                 ).show()
             }
-            if (cm < cmMinValue) {
-                cm = cmMinValue
-                cmValueTxt.setText(cm.toString())
-                Toast.makeText(
-                    applicationContext,
-                    "Minimum centimorgan value of $cmMinValue has been substituted",
-                    Toast.LENGTH_LONG
-                ).show()
-            }
+
 
 // retrieve grouping data for relationships in scope based on entered value
-            val groupData = getGroupData(cm)
+            val groupData = getGroupData(centimorgans)
 
             val groupPercentages = HashMap<String, Double>()
             val relationshipPercentagesGroups = HashMap<Double, MutableList<String>>()
 
             for (rel in groupData) {
-                val probability = getProbability(cm, rel.group)
+                val probability = getProbability(centimorgans, rel.group)
                 groupPercentages[rel.relationship] = probability
                 var tmpArray: ArrayList<String>
                 tmpArray = if (relationshipPercentagesGroups[probability].isNullOrEmpty()) {
@@ -112,9 +156,6 @@ class MainActivity : AppCompatActivity() {
                         relationshipPercentagesGroups
                     )
                 expandableListView!!.setAdapter(adapter)
-
-//                for(i in 0..adapter!!.groupCount){
-//                }
 
 
 //                expandableListView!!.setOnGroupExpandListener { groupPosition ->
