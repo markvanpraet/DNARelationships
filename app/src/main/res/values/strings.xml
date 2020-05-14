@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">DNA Relationship Reference</string>
+    <string name="finRelBtnLbl">Find Relationships</string>
+    <string name="cmValLbl">centimorgans</string>
+    <string name="switchOffVal">%</string>
+    <string name="switchOnVal">CM</string>
+    <string name="switchLbl">CM/%</string>
+</resources>
