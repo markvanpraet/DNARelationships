@@ -77,7 +77,7 @@ class MainActivity : AppCompatActivity() {
         // main logic for processing entered values
         findRelationshipsBtn.setOnClickListener {
 
-            // hide soft keypad
+            // hide soft keypad once the button is pushed
             val immHandle = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             immHandle.hideSoftInputFromWindow(currentFocus!!.windowToken, 0)
 
