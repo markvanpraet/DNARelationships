@@ -4,11 +4,14 @@ import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.Menu
+import android.view.MenuItem
 import android.view.inputmethod.InputMethodManager
 import android.widget.ExpandableListAdapter
 import android.widget.ExpandableListView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.afollestad.materialdialogs.MaterialDialog
 import kotlinx.android.synthetic.main.activity_main.*
 import java.io.BufferedReader
 import java.io.InputStream
@@ -126,7 +129,6 @@ class MainActivity : AppCompatActivity() {
                 ).show()
             }
 
-
 // retrieve grouping data for relationships in scope based on entered value
             val groupData = getGroupData(centimorgans)
 
@@ -156,7 +158,6 @@ class MainActivity : AppCompatActivity() {
                         relationshipPercentagesGroups
                     )
                 expandableListView!!.setAdapter(adapter)
-
 
 //                expandableListView!!.setOnGroupExpandListener { groupPosition ->
 //                    Toast.makeText(
@@ -284,5 +285,35 @@ class MainActivity : AppCompatActivity() {
             }
         }
         return firstLast
+    }
+    //
+    // menu item processing
+    //
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        super.onCreateOptionsMenu(menu)
+        menuInflater.inflate(R.menu.menu,menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        var selected = ""
+        when(item.itemId){
+
+            R.id.aboutMnu -> {
+                MaterialDialog(this).show {
+                    title(R.string.aboutTitle)
+                    message(R.string.aboutContent){html()}
+                    positiveButton(R.string.agree)
+                }
+            }
+            R.id.helpMnu -> {
+                MaterialDialog(this).show {
+                    title(R.string.helpTitle)
+                    message(R.string.helpMessage){html()}
+                    positiveButton(R.string.agree)
+                }
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
