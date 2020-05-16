@@ -1,20 +1,18 @@
 package com.markvanpraet.dnarelationships
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Typeface
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseExpandableListAdapter
-import android.widget.ExpandableListView
 import android.widget.TextView
 import java.text.NumberFormat
 
 import kotlin.collections.HashMap
 
 class CustomExpandableListAdapter internal constructor(
-    private val context: Context,
+    private val context: MainActivity,
     private val titleList: List<Double>,
     private val dataList: HashMap<Double, MutableList<String>>
 ) : BaseExpandableListAdapter() {
@@ -83,8 +81,13 @@ class CustomExpandableListAdapter internal constructor(
         val listTitleTextView = convertView!!.findViewById<TextView>(R.id.listTitle)
         listTitleTextView.setTypeface(null, Typeface.BOLD)
 
-        listTitleTextView.text = percentFormat.format(listTitle.toDouble()) + "   (" + getChildrenCount(listPosition) +
-                if(getChildrenCount(listPosition)==1) " relationship)" else " relationships)"
+        var tempTitle = ""
+        if (listTitle.toDouble() == 0.0) tempTitle = "~"
+
+        tempTitle += percentFormat.format(listTitle.toDouble()) + "   (" + getChildrenCount(listPosition) +
+            if(getChildrenCount(listPosition)==1) " relationship)" else " relationships)"
+
+        listTitleTextView.text = tempTitle
         return convertView
     }
 

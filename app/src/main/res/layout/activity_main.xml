@@ -6,7 +6,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:isScrollContainer="true"
-    android:padding="8dp">
+    android:paddingTop="8dp"
+    android:paddingLeft="8dp"
+    android:paddingRight="8dp"
+    android:paddingBottom="0dp">
 
     <EditText
         android:id="@+id/cmValueTxt"
@@ -64,6 +67,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
+        android:layout_marginBottom="24dp"
         android:isScrollContainer="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -81,5 +85,33 @@
         </ExpandableListView>
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/cmBottomTxt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#4A4949"
+        android:textColor="#FFFFFF"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/percentBottomTxt"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
+        tools:text="Centimorgans: 222.66" />
+
+    <TextView
+        android:id="@+id/percentBottomTxt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#4A4949"
+        android:textColor="#FFFFFF"
+        android:textSize="12sp"
+        android:textAlignment="textEnd"
+        android:gravity="end"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/cmBottomTxt"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
+        tools:text="22.1% shared cM" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

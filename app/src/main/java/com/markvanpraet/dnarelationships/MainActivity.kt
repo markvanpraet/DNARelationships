@@ -50,25 +50,41 @@ class MainActivity : AppCompatActivity() {
     private lateinit var groupings: ArrayList<Groupings>
 
     private var expandableListView: ExpandableListView? = null
+    private var relationshipPercentagesGroups = HashMap<Double, MutableList<String>>()
     private var adapter: ExpandableListAdapter? = null
     private var titleList: List<Double>? = null
+    private var titleListArr: MutableList<Double>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         //
         // calculation logic (load results into hashmap<%, relationships<array>)
-        //
         ranges = loadRanges()
         likelihoods = loadLikelihoods()
         groupings = loadGroupings()
 
         decFormat.maximumFractionDigits = 2
 
+        //
         // disable button unless values entered
         cmValueTxt.addTextChangedListener(object: TextWatcher {
             override fun onTextChanged(s:CharSequence, start:Int, before:Int, count:Int) {
                 findRelationshipsBtn.isEnabled = s.toString().trim { it <= ' ' }.isNotEmpty()
+                // clear expandable listview contents on any change in entered value (this is inefficient - may look for an alternative)
+                if(expandableListView!=null) {
+                    titleListArr?.clear()
+                    relationshipPercentagesGroups.clear()
+                    adapter =
+                        CustomExpandableListAdapter(
+                            MainActivity(),
+                            titleListArr!!,
+                            relationshipPercentagesGroups
+                        )
+                    expandableListView!!.setAdapter(adapter)
+                    percentBottomTxt.text = ""
+                    cmBottomTxt.text = ""
+                }
             }
             override fun beforeTextChanged(s:CharSequence, start:Int, count:Int,
                                            after:Int) {
@@ -76,8 +92,11 @@ class MainActivity : AppCompatActivity() {
             override fun afterTextChanged(s: Editable) {
             }
         })
-        //
-        // main logic for processing entered values
+        /*
+
+        VALIDATION AND SETUP OF ENTERED VALUES AND SELECTIONS
+
+        */
         findRelationshipsBtn.setOnClickListener {
 
             // hide soft keypad once the button is pushed
@@ -86,8 +105,9 @@ class MainActivity : AppCompatActivity() {
 
             var centimorgans: Double
 
-            // assess whether cm or % selected as UOM
+            // assess whether cm or % radio button selected as UOM
             if(cmRadBtn.isChecked) {
+                // cm radio button selected
                 centimorgans = decFormat.parse(cmValueTxt.text.toString()).toDouble()
                 // constrain to allowed values
                 if (centimorgans > cmMaxValue) {
@@ -109,7 +129,7 @@ class MainActivity : AppCompatActivity() {
                     ).show()
                 }
             }
-            // percentage entered
+            // shared percentage entered
             else {
                 var percent = decFormat.parse(cmValueTxt.text.toString()).toDouble()
                 if (percent > 100) {
@@ -122,18 +142,25 @@ class MainActivity : AppCompatActivity() {
                     ).show()
                 }
                 centimorgans = cmPercentConv / 100 * percent     // convert percent to centimorgans
-                Toast.makeText(
-                    applicationContext,
-                    "Percentage value equates to ${decFormat.format(centimorgans)} centimorgans",
-                    Toast.LENGTH_LONG
-                ).show()
             }
+            //
+            // update bottom bar with entered or calculated values
+            val calcPercent: Double = (centimorgans / cmPercentConv * 100)
+            var displayTxt = "${decFormat.format(calcPercent)} % shared cM"
+            percentBottomTxt.text = displayTxt
+            displayTxt = "Centimorgans: ${decFormat.format(centimorgans)}"
+            cmBottomTxt.text = displayTxt
 
-// retrieve grouping data for relationships in scope based on entered value
+            /*
+
+            START OF CALCULATION PROCESS
+            ============================
+            retrieve grouping data for relationships in scope based on entered value
+            */
             val groupData = getGroupData(centimorgans)
 
             val groupPercentages = HashMap<String, Double>()
-            val relationshipPercentagesGroups = HashMap<Double, MutableList<String>>()
+//            val relationshipPercentagesGroups = HashMap<Double, MutableList<String>>()
 
             for (rel in groupData) {
                 val probability = getProbability(centimorgans, rel.group)
@@ -151,10 +178,11 @@ class MainActivity : AppCompatActivity() {
             expandableListView = findViewById(R.id.expandableListView)
             if (expandableListView != null) {
                 titleList = ArrayList(relationshipPercentagesGroups.keys.sortedDescending())
+                titleListArr = (titleList as ArrayList<Double>).toMutableList()
                 adapter =
                     CustomExpandableListAdapter(
                         this,
-                        titleList as ArrayList<Double>,
+                        titleListArr!!,
                         relationshipPercentagesGroups
                     )
                 expandableListView!!.setAdapter(adapter)
@@ -201,7 +229,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getProbability(cm: Double, group: String): Double {
-        // get adjacent likelihoods
+        // get adjacent likelihoodsold
         val startEnd = getAdjacentLikelihoods(cm)
         // perform calculation
         // get likelihood for group in start/end (wrapping) probability
@@ -287,8 +315,7 @@ class MainActivity : AppCompatActivity() {
         return firstLast
     }
     //
-    // menu item processing
-    //
+    // MENU PROCESSING
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         super.onCreateOptionsMenu(menu)
         menuInflater.inflate(R.menu.menu,menu)
@@ -296,7 +323,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        var selected = ""
+
         when(item.itemId){
 
             R.id.aboutMnu -> {
