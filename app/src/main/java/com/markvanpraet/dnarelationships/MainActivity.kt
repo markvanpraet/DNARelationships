@@ -108,7 +108,7 @@ class MainActivity : AppCompatActivity() {
             // assess whether cm or % radio button selected as UOM
             if(cmRadBtn.isChecked) {
                 // cm radio button selected
-                centimorgans = decFormat.parse(cmValueTxt.text.toString()).toDouble()
+                centimorgans = decFormat.parse(cmValueTxt.text.toString())!!.toDouble()
                 // constrain to allowed values
                 if (centimorgans > cmMaxValue) {
                     centimorgans = cmMaxValue
@@ -131,7 +131,7 @@ class MainActivity : AppCompatActivity() {
             }
             // shared percentage entered
             else {
-                var percent = decFormat.parse(cmValueTxt.text.toString()).toDouble()
+                var percent = decFormat.parse(cmValueTxt.text.toString())!!.toDouble()
                 if (percent > 100) {
                     percent = 100.0
                     cmValueTxt.setText(percent.toString())
@@ -339,6 +339,15 @@ class MainActivity : AppCompatActivity() {
                     message(R.string.helpMessage){html()}
                     positiveButton(R.string.agree)
                 }
+            }
+            R.id.expandAllMnu ->{
+                if(expandableListView!=null) {
+                    for(i in 0 until adapter!!.groupCount) expandableListView!!.expandGroup(i)
+                }
+            }
+            R.id.collapseAllMnu -> {
+                if(expandableListView!=null)
+                    for(i in 0 until adapter!!.groupCount) expandableListView!!.collapseGroup(i)
             }
         }
         return super.onOptionsItemSelected(item)
