@@ -12,14 +12,16 @@ import android.widget.ExpandableListView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.afollestad.materialdialogs.MaterialDialog
+import com.microsoft.appcenter.AppCenter
+import com.microsoft.appcenter.analytics.Analytics
+import com.microsoft.appcenter.crashes.Crashes
 import kotlinx.android.synthetic.main.activity_main.*
 import java.io.BufferedReader
 import java.io.InputStream
 import java.io.InputStreamReader
 import java.nio.charset.Charset
 import java.text.NumberFormat
-
-import java.util.ArrayList
+import java.util.*
 import kotlin.collections.HashMap
 import kotlin.math.abs
 
@@ -58,6 +60,11 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        // enable Microsoft App Centre capabilities
+        AppCenter.start(
+            application, "cd9d42f4-cc7e-4531-874c-b8fce58a1a5a",
+            Analytics::class.java, Crashes::class.java
+        )
         //
         // calculation logic (load results into hashmap<%, relationships<array>)
         ranges = loadRanges()
@@ -187,32 +194,6 @@ class MainActivity : AppCompatActivity() {
                     )
                 expandableListView!!.setAdapter(adapter)
 
-//                expandableListView!!.setOnGroupExpandListener { groupPosition ->
-//                    Toast.makeText(
-//                        applicationContext,
-//                        (titleList as ArrayList<Double>)[groupPosition].toString() + " List Expanded.",
-//                        Toast.LENGTH_SHORT
-//                    ).show()
-//                }
-
-//                expandableListView!!.setOnGroupCollapseListener { groupPosition ->
-//                    Toast.makeText(
-//                        applicationContext,
-//                        (titleList as ArrayList<Double>)[groupPosition].toString() + " List Collapsed.",
-//                        Toast.LENGTH_SHORT
-//                    ).show()
-//                }
-
-//                expandableListView!!.setOnChildClickListener { parent, v, groupPosition, childPosition, id ->
-//                    Toast.makeText(
-//                        applicationContext,
-//                        "Clicked: " + (titleList as ArrayList<Double>)[groupPosition] + " -> " + relationshipPercentagesGroups[(titleList as ArrayList<Double>)[groupPosition]]!!.get(
-//                            childPosition
-//                        ),
-//                        Toast.LENGTH_SHORT
-//                    ).show()
-//                    false
-//                }
             }
         }
     }
@@ -229,7 +210,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getProbability(cm: Double, group: String): Double {
-        // get adjacent likelihoodsold
+        // get adjacent likelihoods
         val startEnd = getAdjacentLikelihoods(cm)
         // perform calculation
         // get likelihood for group in start/end (wrapping) probability
