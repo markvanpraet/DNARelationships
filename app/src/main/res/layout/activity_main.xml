@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:isScrollContainer="true"
+    android:paddingTop="8dp"
+    android:paddingLeft="8dp"
+    android:paddingRight="8dp"
+    android:paddingBottom="0dp">
+
+    <EditText
+        android:id="@+id/cmValueTxt"
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:hint="@string/cmValLbl"
+        android:inputType="numberDecimal"
+        app:layout_constraintEnd_toStartOf="@+id/uomRadioGrp"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="centimorgans" />
+
+    <RadioGroup
+        android:id="@+id/uomRadioGrp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        app:layout_constraintStart_toEndOf="@+id/cmValueTxt"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RadioButton
+            android:id="@+id/cmRadBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:checked="true"
+            android:text="@string/cmRBVal"
+            android:textSize="12sp" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:text="@string/percentRBVal"
+            android:textSize="12sp" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/findRelationshipsBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:enabled="false"
+        android:text="@string/finRelBtnLbl"
+        app:layout_constraintBottom_toBottomOf="@+id/cmValueTxt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/uomRadioGrp"
+        app:layout_constraintTop_toTopOf="@+id/cmValueTxt"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <LinearLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="24dp"
+        android:isScrollContainer="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/uomRadioGrp"
+        app:layout_constraintVertical_bias="0.0">
+
+        <ExpandableListView
+            android:id="@+id/expandableListView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:dividerHeight="0dp"
+            android:headerDividersEnabled="true">
+
+        </ExpandableListView>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/cmBottomTxt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#4A4949"
+        android:textColor="#FFFFFF"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/percentBottomTxt"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
+        tools:text="Centimorgans: 222.66" />
+
+    <TextView
+        android:id="@+id/percentBottomTxt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#4A4949"
+        android:textColor="#FFFFFF"
+        android:textSize="12sp"
+        android:textAlignment="textEnd"
+        android:gravity="end"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/cmBottomTxt"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
+        tools:text="22.1% shared cM" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

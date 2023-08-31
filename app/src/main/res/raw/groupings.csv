@@ -1,0 +1,104 @@
+Sibling,S,1,A,Sibling (2613)
+Parent,P,0,AA,Parent (3485)
+Child,P,0,AA,Child (3487)
+Half Sibling,hS,2,B,Half Sibling (1759)
+Grandparent,GP,2,B,Grandparent (1754)
+Grandchild,GP,2,B,Grandchild (1754)
+Aunt / Uncle,A,2,B,Aunt / Uncle (1741)
+Niece / Nephew,U,2,B,Niece / Nephew (1740)
+Great-Grandparent,GGP,3,C,Great-Grandparent (887)
+Great-Grandchild,GGP,3,C,Great-Grandchild (887)
+Half Aunt / Uncle,hA,3,C,Half Aunt / Uncle (871)
+Half Niece / Nephew,hU,3,C,Half Niece / Nephew (871)
+Great-Aunt / Uncle,GA,3,C,Great-Aunt / Uncle (850)
+Great-Niece / Nephew,GA,3,C,Great-Niece / Nephew (850)
+1C,1C,3,C,1st Cousint (866)
+Great-Great-Grandparent,2GGP,4,D,Great-Great-Grandparent
+Great-Great-Aunt / Uncle,2GA,4,D,Great-Great-Aunt / Uncle (420)
+Great-Great-Niece / Nephew,2GU,4,D,Great-Great-Niece / Nephew (420)
+Half Great-Aunt / Uncle,hGA,4,D,Half Great-Aunt / Uncle (431)
+Half Great-Niece / Nephew,hGU,4,D,Half Great-Niece / Nephew (431)
+1C1R,1C1R,4,D,1st Cousin Once Removed (433)
+Half 1C,h1C,4,D,Half 1st Cousin (449)
+Great-Great-Great-Grandparent,3GGP,5,E,Great-Great-Great Grandparent
+GGG Aunt / Uncle,3GA,5,E,Great-Great-Great Aunt / Uncle
+Half GG-Niece / Nephew,hGU,5,E,Half Great-Great Niece / Nephew (208)
+Half GG-Aunt / Uncle,h2GU,5,E,Half Great-Great Aunt / Uncle (208)
+Half Great-Great-Niece / Nephew,h2GU,5,E,Half Great-Great Niece / Nephew
+Half Great-Great-Aunt / Uncle,h2GU,5,E,Half Great-Great Aunt / Uncle
+Half Great-Great-Niece / Nephew,h2GU,5,E,Half Great-Great Niece / Nephew
+1C2R,1C2R,5,E,1st Cousin Twice Removed (221)
+2C,2C,5,E,2nd Cousin (229)
+Half 1C1R,h1C1R,5,E,Half 1st Cousin Once Removed (224)
+GGGG Aunt / Uncle,4GA,6,F,Great-Great-Great-Great Aunt / Uncle
+Half Great-Great-Great-Aunt / Uncle,h3GA,6,F,Half Great-Great-Great Aunt / Uncle
+1C3R,1C3R,6,F,1st Cousin Thrice Removed (117)
+2C1R,2C1R,6,F,2nd Cousin Once Removed (122)
+Half 1C2R,h1C2R,6,F,Half 1st Cousin Twice Removed (125)
+Half 2C,h2C,6,F,Half 2nd Cousin (120)
+Half GGGG-Aunt / Uncle,h4GU,7,G,Half Great-Great-Great Aunt / Uncle
+1C4R,1C4R,7,G,1st Cousin Four Times Removed
+2C2R,2C2R,7,G,2nd Cousin Twice Removed (71)
+3C,3C,7,G,3rd Cousin (73)
+Half 1C3R,h1C3R,7,G,Half 1st Cousin Thrice Removed (60)
+Half 2C1R,h2C1R,7,G,Half 2nd Cousin Once Removed (66)
+1C5R,1C5R,8,H,1st Cousin Five Time Removed
+2C3R,2C3R,8,H,2nd Cousin Thrice Removed (51)
+3C1R,3C1R,8,H,3rd Cousin Once Removed (48)
+Half 1C4R,h1C4R,8,H,Half 1st Cousin Four Times Removed
+Half 2C2R,h2C2R,8,H,Half 2nd Cousin Twice Removed (48)
+Half 3C,h3C,8,H,Half 3rd Cousin (48)
+2C4R,2C4R,9,I,2nd Cousin Four Times Removed
+3C2R,3C2R,9,I,3rd Cousin Twice Removed (36)
+4C,4C,9,I,4th Cousin (35)
+Half 1C5R,h1C5R,9,I,Half 1st Cousin Five Times Removed
+Half 2C3R,h2C3R,9,I,Half 2nd Cousin Thrice Removed
+Half 3C1R,h3C1R,9,I,Half 3rd Cousin Once Removed (37)
+2C5R,2C5R,10,J+,2nd Cousin Five Times Removed
+3C3R,3C3R,10,J+,3rd Cousin Thrice Removed (27)
+4C1R,4C1R,10,J+,4th Cousin Once Removed (28)
+Half 2C4R,h2C4R,10,J+,Half 2nd Cousin Four Times Removed
+Half 3C2R,h3C2R,10,J+,Half 3rd Cousin Twice Removed (27)
+Half 4C,h4C,10,J+,Half 4th Cousin
+3C4R,3C4R,11,J+,3rd Cousin Four Times Removed
+4C2R,4C2R,11,J+,4th Cousin Twice Removed (22)
+5C,5C,11,J+,5th Cousin (25)
+Half 2C5R,h2C5R,11,J+,Half 2nd Cousin Five Times Removed
+Half 3C3R,h3C3R,11,J+,Half 3rd Cousin Thrice Removed
+Half 4C1R,h4C1R,11,J+,Half 4th Cousin Once Removed
+3C5R,3C5R,12,J+,3rd Cousin Five Times Removed
+4C3R,4C3R,12,J+,4th Cousin Thrice Removed (19)
+5C1R,5C1R,12,J+,5th Cousin Once Removed (21)
+Half 3C4R,h3C4R,12,J+,Half 3rd Cousin Four Times Removed
+Half 4C2R,h4C2R,12,J+,Half 4th Cousin Twice Removed
+Half 5C,h5C,12,J+,Half 5th Cousin
+4C4R,4C4R,13,J+,4th Cousin Four Times Removed
+5C2R,5C2R,13,J+,5th Cousin Twice Removed (18)
+6C,6C,13,J+,6th Cousin (18)
+Half 3C5R,h3C5R,13,J+,Half 3rd Cousin Five Times Removed
+Half 4C3R,h4C3R,13,J+,Half 4th Cousin Thrice Removed
+Half 5C1R,h5C1R,13,J+,Half 5th Cousin Once Removed
+4C5R,4C5R,14,J+,4th Cousin Five Times Removed
+5C3R,5C3R,14,J+,5th Cousin Thrice Removed (13)
+6C1R,6C1R,14,J+,6th Cousin Once Removed (15)
+7C,6C,14,J+,7th Cousin (14)
+Half 4C4R,h4C4R,14,J+,Half 4th Cousin Four Times Removed
+Half 5C2R,h5C2R,14,J+,Half 5th Cousin Twice Removed
+Half 6C,h6C,14,J+,Half 6th Cousin
+5C4R,5C4R,15,J+,5th Cousin Four Times Removed
+6C2R,6C2R,15,J+,6th Cousin Twice Removed (13)
+7C1R,6C,15,J+,7th Cousin Once Removed (12)
+8C,6C,15,J+,8th Cousin (11)
+Half 4C5R,h4C5R,15,J+,Half 4th Cousin Five Times Removed
+Half 5C3R,h5C3R,15,J+,Half 5th Cousin Thrice Removed
+Half 6C1R,h6C1R,15,J+,Half 6th Cousin Once Removed
+5C5R,5C5R,16,J+,5th Cousin Five Times Removed
+6C3R,6C3R,16,J+,6th Cousin Thrice Removed
+Half 5C4R,h5C4R,16,J+,Half 5th Cousin Four Times Removed
+Half 6C2R,h6C2R,16,J+,Half 6th Cousin Twice Removed
+6C4R,6C4R,17,J+,6th Cousin Four Times Removed
+Half 5C5R,h5C5R,17,J+,Half 5th Cousin Five Times Removed
+Half 6C3R,h6C3R,17,J+,Half 6th Cousin Thrice Removed
+6C5R,6C5R,18,J+,6th Cousin Five Times Removed
+Half 6C4R,h6C4R,18,J+,Half 6th Cousin Four Times Removed
+Half 6C5R,h6C5R,19,J+,Half 6th Cousin Five Times Removed

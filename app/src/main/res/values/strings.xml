@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">DNA Relationship</string>
+    <string name="app_name_actionbar">DNA Relationship Reference</string>
+    <string name="finRelBtnLbl">Get Relationships</string>
+    <string name="cmValLbl">shared</string>
+    <string name="percentRBVal">\u0025 shared</string>
+    <string name="cmRBVal">centimorgans</string>
+    <string name="aboutTitle">About DNA Relationship</string>
+    <string name="aboutContent"><![CDATA[
+    <b>DNA Relationship Reference</b> is inspired by the efforts of the team that developed <b>The Shared Cm Project</b>
+     and draws its data and general functionality from <a href="https://dnapainter.com/tools/sharedcmv4">version 4.0 of the tool.</a><br/><br/>
+    This tool was developed for Android independently by M. A. Van Praet. (20230829)<br/><br/>
+    <i><font color="#0099CC">Thanks for using DNA Relationship Reference!</font></i>
+  ]]></string>
+    <string name="agree">@android:string/ok</string>
+    <string name="helpTitle">How to use DNA Relationship Reference</string>
+    <string name="helpMessage"><![CDATA[
+    Enter either the match value in absolute Centimorgans or your shared relationship percentage.
+    Select the unit you\'ve entered and about which you\'d like to find possible relationships.</br>
+    Relationships are listed by probable match, showing the relative probable relationship percentage.
+    Expand the percentage group to reveal the individual relationships and the relationship average.
+]]></string>
+    <string name="expand_all">Expand All</string>
+    <string name="collapse_all">Collapse All</string>
+    <string name="helpMnu">Help</string>
+    <string name="aboutMnu">About</string>
+</resources>
